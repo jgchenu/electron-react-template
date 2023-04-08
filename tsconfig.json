@@ -12,7 +12,11 @@
     "outDir": "dist",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "typeRoots": ["./node_modules/@types", "shared/type-roots/index.d.ts"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./shared/type-roots",
+      "./shared/types"
+    ],
     "paths": {
       "*": ["node_modules/*"],
       "$src/*": ["src/*"],

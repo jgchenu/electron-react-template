@@ -4,6 +4,7 @@ import { MakerZIP } from "@electron-forge/maker-zip";
 import { MakerDeb } from "@electron-forge/maker-deb";
 import { MakerRpm } from "@electron-forge/maker-rpm";
 import { WebpackPlugin } from "@electron-forge/plugin-webpack";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 
 import { mainWindowName } from "./shared";
 import { mainConfig } from "./webpack.main.config";
@@ -39,7 +40,9 @@ const config: ForgeConfig = {
               js: "./src/preload.ts",
               config: {
                 ...rendererConfig,
-                plugins: [],
+                plugins: rendererConfig.plugins?.filter(
+                  (item) => !(item instanceof ReactRefreshWebpackPlugin)
+                ),
               },
             },
           },

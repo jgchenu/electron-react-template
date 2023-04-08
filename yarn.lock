@@ -1934,6 +1934,11 @@
   resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
   integrity sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==
 
+"@types/ping@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.npmmirror.com/@types/ping/-/ping-0.4.1.tgz#98f9c20be196ca6c3c2639528b7e1827b17e84be"
+  integrity sha512-q/D+xQvoqrHvntvz2A0Pb0ImYwnN3zakluUp8O2qoogGoVMVbdY2K/ulxHcCh9TzYzVoojayHBa9gYQDIZ4v0A==
+
 "@types/prop-types@*":
   version "15.7.5"
   resolved "https://registry.npmmirror.com/@types/prop-types/-/prop-types-15.7.5.tgz#5f19d2b85a98e9558036f6a3cacc8819420f05cf"
@@ -6218,6 +6223,11 @@ pify@^4.0.1:
   version "4.0.1"
   resolved "https://registry.npmmirror.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
+
+ping@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.npmmirror.com/ping/-/ping-0.4.4.tgz#f70c5c8ad7b476d903100c9d45ecd52cf83e1de3"
+  integrity sha512-56ZMC0j7SCsMMLdOoUg12VZCfj/+ZO+yfOSjaNCRrmZZr6GLbN2X/Ui56T15dI8NhiHckaw5X2pvyfAomanwqQ==
 
 pkg-dir@^4.2.0:
   version "4.2.0"

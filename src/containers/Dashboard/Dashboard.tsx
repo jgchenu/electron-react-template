@@ -1,21 +1,19 @@
-import React, { useCallback, useMemo, Suspense } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import React, { useCallback, useMemo, Suspense } from "react";
+import { NavLink, Outlet } from "react-router-dom";
 
-import styles from './style.less';
+import styles from "./style.less";
 
 function Dashboard() {
   const links = useMemo(
     () => [
-      { to: '/messages', text: 'Messages' },
-      { to: '/tasks', text: 'Tasks' },
-      { to: '/demo', text: 'Demo' },
-      { to: '/redux-demo', text: 'Tasks' },
+      { to: "/demo", text: "Demo" },
+      { to: "/redux-demo", text: "Redux Demo" },
     ],
-    [],
+    []
   );
 
   const renderActive = useCallback((params: { isActive: boolean }) => {
-    return params.isActive ? styles.active : '';
+    return params.isActive ? styles.active : "";
   }, []);
 
   return (
@@ -29,7 +27,7 @@ function Dashboard() {
             </NavLink>
           ))}
         </aside>
-        <main className={styles['sub-content']}>
+        <main className={styles["sub-content"]}>
           <Suspense fallback={null}>
             <Outlet />
           </Suspense>

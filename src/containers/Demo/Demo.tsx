@@ -1,40 +1,47 @@
-import React, { useCallback, useState } from "react";
-import { Button, Modal } from "antd";
+import { useCallback, useState } from "react";
+import { Button, Card } from "antd";
 
-import Like from "$src/assets/svgs/like.svg";
-import { wait } from "$src/helpers";
+import { IpcEvent } from "$shared/constants";
 
-import styles from "./style.less";
+type PingData = {
+  time: number;
+  alive: boolean;
+  host: string;
+};
 
 function Demo() {
-  const [count, setCount] = useState(0);
-  const [modal, contextHolder] = Modal.useModal();
-  const handleOpenModal = useCallback(() => {
-    modal.confirm({
-      title: "title",
-      content: "content",
-      onOk: async () => {
-        await wait(3000);
-      },
-    });
+  const [pingLoading, setPingLoading] = useState(false);
+  const [pingData, setPingData] = useState<PingData[]>([]);
+  const sendMessage = useCallback(async () => {
+    try {
+      setPingLoading(true);
+      const data = await window.electron.sendToMain<PingData[]>(IpcEvent.Ping);
+      console.log("xxx", data);
+      setPingData(data);
+    } finally {
+      setPingLoading(false);
+    }
   }, []);
 
   return (
-    <div>
-      <h1>demo</h1>
-      <div className={styles["blue-background"]}>
-        <p className={styles.red}>red1</p>
-        <p className={styles.green}>green2</p>
-        <Like className={styles.small} />
-      </div>
-      <span data-testid="count">{count}</span>
-      {contextHolder}
-      <Button type="primary" onClick={() => setCount((prev) => prev + 1)}>
-        increase
-      </Button>
-      <Button onClick={() => setCount((prev) => prev - 1)}>decrease</Button>
-      <Button onClick={handleOpenModal}>open modal</Button>
-    </div>
+    <section>
+      <Card
+        title="ping data"
+        style={{ width: 400 }}
+        extra={
+          <Button type="primary" loading={pingLoading} onClick={sendMessage}>
+            ping
+          </Button>
+        }
+      >
+        {pingData.map((item) => (
+          <p key={item.host}>
+            host: {item.host} - alive: {String(item.alive)} - time[ms]:
+            {item.time}
+          </p>
+        ))}
+      </Card>
+    </section>
   );
 }
 
