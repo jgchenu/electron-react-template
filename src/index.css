@@ -1,7 +1,10 @@
+html,
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif;
-  margin: auto;
-  max-width: 38rem;
-  padding: 2rem;
+  Arial, sans-serif;
+  height: 100%;
+}
+
+:global(#root) {
+  height: 100%;
 }
