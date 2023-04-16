@@ -1,20 +1,26 @@
 import { customIpcEventChannel } from "$shared/constants";
 import { ipcMain } from "electron";
-import { getPingData } from "./ping";
+
 import { IpcRequestBody } from "$shared/types/ipc";
+import { eventServices } from "$main/services/eventService";
+
+const noop = () => {
+  //
+};
 
 export function registerIpcEventHandler() {
   ipcMain.addListener(
     customIpcEventChannel,
-    async (event, requestBody: IpcRequestBody) => {
-      console.log("main Received event:", requestBody);
-      const pinData = await getPingData();
+    async (eventSym, requestBody: IpcRequestBody) => {
+      const ipcEvent = requestBody["event"];
+      const handler = eventServices[ipcEvent] || noop;
+      const data = await handler();
       const body = {
         seq: requestBody.seq,
         event: requestBody.event,
-        data: pinData,
+        data: data,
       };
-      event.sender.send(customIpcEventChannel, body);
+      eventSym.sender.send(customIpcEventChannel, body);
     }
   );
 }

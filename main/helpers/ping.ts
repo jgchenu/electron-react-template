@@ -1,7 +1,6 @@
 import * as ping from "ping";
 
-export async function getPingData() {
-  const hosts = ["192.168.1.1", "google.com", "yahoo.com"];
+export async function pingHosts(hosts: string[]) {
   const promises = hosts.map(async (host) => {
     try {
       const res = await ping.promise.probe(host, {
